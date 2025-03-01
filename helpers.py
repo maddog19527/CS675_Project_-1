@@ -18,8 +18,9 @@ def OutlierDetection(df):
     
     
 def boxplotter (df):
-    fig, ax=plt.subplots(nrows=len(df), ncols=1, figsize=(8, len(df)))
-    for ax, col in zip(df, ax):
+    num_cols=len(df.columns)
+    fig,axes=plt.subplots(nrows=num_cols, ncols=1, figsize=(8, max(4, num_cols * 2)))
+    for ax, col in zip(axes, df.columns):
         ax.boxplot(df[col])
         ax.set_title(f'Boxplot for {col}')
         ax.set_xlabel('Data')
